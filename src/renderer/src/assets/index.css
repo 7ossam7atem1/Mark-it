@@ -16,4 +16,10 @@
     background-color: #111214f5;
     backdrop-filter: blur(100%);
   }
+  header {
+    -webkit-app-region: drag;
+  }
+  button {
+    -webkit-app-region: no-drag;
+  }
 }
