@@ -5,8 +5,10 @@ if (process.contextIsolated) {
 }
 try {
   contextBridge.exposeInMainWorld('context', {
-    //TODO
+    locale: navigator.language
   })
+  alert('Preload script executed!') 
+  console.log('Preload script executed. Locale:', navigator.language)
 } catch (error) {
   console.error(error)
 }

@@ -18,11 +18,13 @@ function createWindow(): void {
     titleBarStyle: 'hidden',
     trafficLightPosition: { x: 15, y: 10 },
     webPreferences: {
-      preload: path.join(__dirname, '../preload/index.js'),
+      preload: path.join(__dirname, '../preload/index.ts'),
       sandbox: true,
       contextIsolation: true
     }
   })
+  console.log("BrowserWindow created, preload script set:", path.join(__dirname, '../preload/index.js'));
+
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
