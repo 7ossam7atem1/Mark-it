@@ -8,25 +8,12 @@ import {
   MDXEditor,
   quotePlugin
 } from '@mdxeditor/editor'
-import 'prismjs/themes/prism.css';
+import 'prismjs/themes/prism.css'
 
 export const MarkdownEditor = () => {
   return (
     <MDXEditor
-      markdown={`# Hello from MDX editor
-
-        ## Image Example
-        ![Alt text](https://via.placeholder.com/150)
-        
-        ## Link Example
-        [MDX Editor Documentation](https://mdxeditor.com)
-        
-        ## Code Block Example
-        \`\`\`js
-        const greeting = 'Hello, world!';
-        console.log(greeting);
-        \`\`\`
-        `}
+      markdown={`# Hello from MDX editor `}
       plugins={[
         headingsPlugin(),
         listsPlugin(),
