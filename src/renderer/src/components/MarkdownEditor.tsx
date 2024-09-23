@@ -8,12 +8,16 @@ import {
   MDXEditor,
   quotePlugin
 } from '@mdxeditor/editor'
+import { useMarkdownEditor } from '@renderer/hooks/useMarkdownEditor'
 import 'prismjs/themes/prism.css'
 
 export const MarkdownEditor = () => {
+  const { selectedNote } = useMarkdownEditor()
+  if (!selectedNote) return null
   return (
     <MDXEditor
-      markdown={`# Hello from MDX editor `}
+      key={selectedNote.title}
+      markdown={selectedNote.content}
       plugins={[
         headingsPlugin(),
         listsPlugin(),

@@ -2,9 +2,11 @@ import { NotePrev } from '@/components'
 import { useNotesList } from '@/hooks/useNotesList'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
-
-export const NotePrevList = ({ className, ...props }: ComponentProps<'ul'>) => {
-  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({})
+export type NotePrevListProps = ComponentProps<'ul'> & {
+  onSelect?:()=>void
+}
+export const NotePrevList = ({ onSelect,className, ...props }: NotePrevListProps) => {
+  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({onSelect})
   if (notes.length === 0) {
     return (
       <ul className={twMerge('text-center pt-4', className)} {...props}>
