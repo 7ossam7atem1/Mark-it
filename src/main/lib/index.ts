@@ -7,7 +7,7 @@ export const getRootDir = () => {
   return `${homedir()}/${appDirectoryName}`
 }
 
-export const getNotes : GetNotes = async () => {
+export const getNotes: GetNotes = async () => {
   const rootDir = getRootDir()
   await ensureDir(rootDir)
   const notesFileNames = await readdir(rootDir, {

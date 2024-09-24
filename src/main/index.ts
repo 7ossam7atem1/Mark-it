@@ -1,8 +1,8 @@
+import { getNotes } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
+import { GetNotes } from '@shared/types'
 import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import path, { join } from 'path'
-import { getNotes } from '@/lib';
-import { GetNotes } from '@shared/types';
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -15,7 +15,7 @@ function createWindow(): void {
     frame: false,
     transparent: true,
     vibrancy: 'appearance-based',
-     backgroundMaterial: 'acrylic',
+    backgroundMaterial: 'acrylic',
     visualEffectState: 'active',
     titleBarStyle: 'hidden',
     trafficLightPosition: { x: 15, y: 10 },
@@ -25,8 +25,10 @@ function createWindow(): void {
       contextIsolation: true
     }
   })
-  console.log("BrowserWindow created, preload script set:", path.join(__dirname, '../preload/index.js'));
-
+  console.log(
+    'BrowserWindow created, preload script set:',
+    path.join(__dirname, '../preload/index.js')
+  )
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -62,7 +64,7 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
-  ipcMain.handle('getNotes' , (_, ...args:Parameters<GetNotes>)=> getNotes(...args))
+  ipcMain.handle('getNotes', (_, ...args: Parameters<GetNotes>) => getNotes(...args))
   createWindow()
 
   app.on('activate', function () {

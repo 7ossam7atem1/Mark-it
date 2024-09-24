@@ -1,5 +1,5 @@
-import { noteInfo } from '@/shared/models'
 import { cn, formatDateFromMs } from '@renderer/utils'
+import { noteInfo } from '@shared/models'
 import { ComponentProps } from 'react'
 
 export type NotePreviewProps = noteInfo & {
@@ -14,8 +14,7 @@ export const NotePrev = ({
   className,
   ...props
 }: NotePreviewProps) => {
-
-  const date = formatDateFromMs(lastEditedtime);
+  const date = formatDateFromMs(lastEditedtime)
   return (
     <div
       className={cn(
@@ -29,9 +28,7 @@ export const NotePrev = ({
       {...props}
     >
       <h3 className="mb-1 font-bold truncate">{title}</h3>
-      <span className="inline-block w-full mb-2 text-xs font-light text-left">
-        {date}
-      </span>
+      <span className="inline-block w-full mb-2 text-xs font-light text-left">{date}</span>
     </div>
   )
 }
