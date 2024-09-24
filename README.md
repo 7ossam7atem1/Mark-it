@@ -1,6 +1,28 @@
-# markit
+# Mark-it
 
-An Electron application with React and TypeScript
+Mark-it is a simple **note-taking app** that uses **Markdown** syntax to format your notes.
+
+<div style="text-align: center;">
+    <img src="./resources/Animation.gif" alt="github.gif" width="200"/>
+</div>
+
+## Features
+
+- Create, edit, and delete notes in Markdown format.
+- Automatically creates a Welcome Note on first launch.
+- Real-time update of the note list after operations (create, delete, etc.).
+- Electron-based file system access ensures notes are saved locally.
+- Ensures notes are only saved in the designated app directory.
+- Light-weight and fast with Vite build system.
+
+## Setup and Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/7ossam7atem1/Mark-it.git
+   cd mark-it
+   ```
 
 ## Recommended IDE Setup
 
