@@ -1,4 +1,4 @@
-import { GetNotes, ReadNote } from '@shared/types'
+import { GetNotes, ReadNote, WriteNote } from '@shared/types'
 import { contextBridge, ipcRenderer } from 'electron'
 
 if (process.contextIsolated) {
@@ -8,7 +8,8 @@ try {
   contextBridge.exposeInMainWorld('context', {
     locale: navigator.language,
     getNotes: (...args: Parameters<GetNotes>) => ipcRenderer.invoke('getNotes', ...args),
-    readNote: (...args: Parameters<ReadNote>) => ipcRenderer.invoke('readNote', ...args)
+    readNote: (...args: Parameters<ReadNote>) => ipcRenderer.invoke('readNote', ...args),
+    writeNote: (...args: Parameters<WriteNote>) => ipcRenderer.invoke('writeNote', ...args)
   })
   alert('Preload script executed!')
   console.log('Preload script executed. Locale:', navigator.language)

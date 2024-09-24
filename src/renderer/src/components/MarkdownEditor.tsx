@@ -12,12 +12,15 @@ import { useMarkdownEditor } from '@renderer/hooks/useMarkdownEditor'
 import 'prismjs/themes/prism.css'
 
 export const MarkdownEditor = () => {
-  const { selectedNote } = useMarkdownEditor()
+  const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useMarkdownEditor()
   if (!selectedNote) return null
   return (
     <MDXEditor
+      ref={editorRef}
       key={selectedNote.title}
       markdown={selectedNote.content}
+      onChange={handleAutoSaving}
+      onBlur={handleBlur}
       plugins={[
         headingsPlugin(),
         listsPlugin(),
