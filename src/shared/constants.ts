@@ -1,5 +1,5 @@
-export const appDirectoryName = `markit`
-
+export const appDirectoryName = 'Markit'
 export const fileEncoding = 'utf8'
 
 export const autoSavingTime = 3000
+export const welcomeNoteFilename = 'Welcome.md'

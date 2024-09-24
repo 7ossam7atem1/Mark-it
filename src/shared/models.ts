@@ -1,6 +1,6 @@
-export type noteInfo = {
+export type NoteInfo = {
   title: string
-  lastEditedtime: number
+  lastEditTime: number
 }
 
-export type noteContent = string
+export type NoteContent = string

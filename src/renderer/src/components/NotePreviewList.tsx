@@ -1,14 +1,18 @@
-import { NotePrev } from '@/components'
+import { NotePreview } from '@/components'
 import { useNotesList } from '@/hooks/useNotesList'
 import { isEmpty } from 'lodash'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
-export type NotePrevListProps = ComponentProps<'ul'> & {
+
+export type NotePreviewListProps = ComponentProps<'ul'> & {
   onSelect?: () => void
 }
-export const NotePrevList = ({ onSelect, className, ...props }: NotePrevListProps) => {
+
+export const NotePreviewList = ({ onSelect, className, ...props }: NotePreviewListProps) => {
   const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({ onSelect })
+
   if (!notes) return null
+
   if (isEmpty(notes)) {
     return (
       <ul className={twMerge('text-center pt-4', className)} {...props}>
@@ -18,10 +22,10 @@ export const NotePrevList = ({ onSelect, className, ...props }: NotePrevListProp
   }
 
   return (
-    <ul {...props} className={twMerge(className)}>
+    <ul className={className} {...props}>
       {notes.map((note, index) => (
-        <NotePrev
-          key={note.title + note.lastEditedtime}
+        <NotePreview
+          key={note.title + note.lastEditTime}
           isActive={selectedNoteIndex === index}
           onClick={handleNoteSelect(index)}
           {...note}
