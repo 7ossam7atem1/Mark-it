@@ -3,7 +3,7 @@
 Mark-it is a simple **note-taking app** that uses **Markdown** syntax to format your notes.
 
 <div style="text-align: center;">
-    <img src="./resources/Animation.gif" alt="github.gif" width="200"/>
+    <img src="./resources/Animation.gif" alt="github.gif" width="600"/>
 </div>
 
 ## Features
