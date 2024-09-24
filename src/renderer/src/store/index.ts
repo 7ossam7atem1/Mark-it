@@ -18,7 +18,7 @@ const selectedNoteAtomAsync = atom(async (get) => {
   if (selectedNoteIndex == null || !notes) return null
 
   const selectedNote = notes[selectedNoteIndex]
-  const noteContent = await window.context.readNotes(selectedNote.title)
+  const noteContent = await window.context.readNote(selectedNote.title)
   return {
     ...selectedNote,
     content: noteContent
