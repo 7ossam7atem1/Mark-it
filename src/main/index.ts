@@ -1,8 +1,10 @@
-import { getNotes } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { GetNotes } from '@shared/types'
-import { app, BrowserWindow, ipcMain, shell } from 'electron'
-import path, { join } from 'path'
+import { GetNotes, ReadNote } from '@shared/types'
+import { BrowserWindow, app, ipcMain, shell } from 'electron'
+import { join } from 'path'
+import icon from '../../resources/icon.png?asset'
+import { getNotes, readNote } from './lib'
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -10,25 +12,21 @@ function createWindow(): void {
     height: 670,
     show: false,
     autoHideMenuBar: true,
+    ...(process.platform === 'linux' ? { icon } : {}),
     center: true,
-    title: 'Markit',
+    title: 'NoteMark',
     frame: false,
-    transparent: true,
-    vibrancy: 'appearance-based',
-    backgroundMaterial: 'acrylic',
+    vibrancy: 'under-window',
     visualEffectState: 'active',
+    backgroundMaterial: 'acrylic',
     titleBarStyle: 'hidden',
     trafficLightPosition: { x: 15, y: 10 },
     webPreferences: {
-      preload: path.join(__dirname, '../preload/index.ts'),
+      preload: join(__dirname, '../preload/index.js'),
       sandbox: true,
       contextIsolation: true
     }
   })
-  console.log(
-    'BrowserWindow created, preload script set:',
-    path.join(__dirname, '../preload/index.js')
-  )
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -62,9 +60,9 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
   ipcMain.handle('getNotes', (_, ...args: Parameters<GetNotes>) => getNotes(...args))
+  ipcMain.handle('readNote', (_, ...args: Parameters<ReadNote>) => readNote(...args))
+
   createWindow()
 
   app.on('activate', function () {
